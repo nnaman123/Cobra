@@ -10,8 +10,10 @@ curl -sSL https://raw.githubusercontent.com/nnaman123/Cobra/main/cobra -o ~/.cob
 # Make them executable
 chmod +x ~/.cobra/cobra.py
 chmod +x ~/.cobra/cobra
+# make sure .zshrc exists
+touch ~/.zshrc
 
-# Add to PATH if not already added
+# add to PATH if not already added
 if ! grep -q 'export PATH="$HOME/.cobra:$PATH"' ~/.zshrc; then
     echo 'export PATH="$HOME/.cobra:$PATH"' >> ~/.zshrc
 fi
