@@ -5,15 +5,21 @@ mkdir -p ~/.cobra
 
 # Download interpreter + launcher from GitHub
 curl -sSL https://raw.githubusercontent.com/nnaman123/Cobra/main/cobra.py -o ~/.cobra/cobra.py
-curl -sSL https://raw.githubusercontent.com/nnaman123/Cobra/main/cobra -o ~/.cobra/cobra
+
+# Create a fresh launcher that points to the hidden interpreter
+cat > ~/.cobra/cobra << 'EOF'
+#!/bin/bash
+python3 ~/.cobra/cobra.py "$@"
+EOF
 
 # Make them executable
 chmod +x ~/.cobra/cobra.py
 chmod +x ~/.cobra/cobra
-# make sure .zshrc exists
+
+# Ensure .zshrc exists
 touch ~/.zshrc
 
-# add to PATH if not already added
+# Add to PATH if not already added
 if ! grep -q 'export PATH="$HOME/.cobra:$PATH"' ~/.zshrc; then
     echo 'export PATH="$HOME/.cobra:$PATH"' >> ~/.zshrc
 fi
